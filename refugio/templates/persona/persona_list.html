@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Nombre</td>
+            <td>Sexo</td>
+            <td>Edad</td>
+            <td>Correo electronico</td>
+            <td>Domicilio</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for persona in object_list%}
+        <tr>
+            <td>{{persona.id}}</td>
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.apellidos}}</td>
+            <td>{{persona.edad}}</td>
+            <td>{{persona.email}}</td>
+            <td>{{persona.domicilio}}</td>
+            <td>
+                <a class ="btn btn-primary" href="{%  url 'adopcion:persona_editar' persona.id %}">Editar</a>
+                <a class ="btn btn-danger" href="{%  url 'adopcion:persona_eliminar' persona.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros de Personas</h1>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}
